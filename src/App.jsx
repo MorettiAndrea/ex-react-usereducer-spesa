@@ -8,21 +8,29 @@ import paths from "./data/paths";
 // pages
 import GroceryListPage from "./pages/GroceryListPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 // components
 import DefaultLayout from "./components/layout/DefaultLayout";
+import { CartProvider } from "./contexts/CartContext";
 
 export default function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path={paths.homePage} element={<HomePage />} />
-            <Route path={paths.groceryListPage} element={<GroceryListPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path="*" element={<NotFoundPage />} />
+              <Route path={paths.homePage} element={<HomePage />} />
+              <Route
+                path={paths.groceryListPage}
+                element={<GroceryListPage />}
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }
