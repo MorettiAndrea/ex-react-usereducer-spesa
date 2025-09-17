@@ -1,3 +1,7 @@
+📌 Milestone 1: Mostrare la lista dei prodotti
+
+1. Parti dall’array products fornito:
+
 Parti dall’array products fornito:
 const products = [
 { name: 'Mela', price: 0.5 },

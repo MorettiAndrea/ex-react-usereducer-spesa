@@ -9,16 +9,11 @@ export default function GroceryList() {
   ];
   return (
     <>
-      <div className="container">
-        <div className="my-3">Lista della spesa</div>
-        <div className="row">
-          {products.map((product) => (
-            <div className="col-4" key={product.index}>
-              <GroceryCard Target={product} />
-            </div>
-          ))}
+      {products.map((product, index) => (
+        <div className="col-3" key={index}>
+          <GroceryCard Target={product} />
         </div>
-      </div>
+      ))}
     </>
   );
 }
