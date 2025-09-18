@@ -13,6 +13,9 @@ function CartProvider({ children }) {
     const isFruitInCart = cart.find(
       (actualFruit) => actualFruit.name === fruit.name
     );
+    if (!isFruitInCart) {
+      return;
+    }
     if (isFruitInCart.quantity > 1) {
       setCart(
         cart.map((targetFruit) =>
@@ -42,6 +45,10 @@ function CartProvider({ children }) {
       setCart([...cart, { ...fruit, quantity: 1 }]);
     }
   };
+  let totalCost = 0;
+  cart.forEach((product) => {
+    totalCost += product.quantity * product.price;
+  });
 
   const removeFromCart = (fruit) => {
     setCart(cart.filter((toDeleteFruit) => toDeleteFruit.name !== fruit.name));
@@ -49,7 +56,7 @@ function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cart, lessToCart, addToCart, removeFromCart }}
+      value={{ cart, totalCost, lessToCart, addToCart, removeFromCart }}
     >
       {children}
     </CartContext.Provider>
